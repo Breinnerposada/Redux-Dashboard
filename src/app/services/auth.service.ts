@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AppState } from '../app.reducer';
 import { setUser, unSetUser } from '../auth/auth.actions';
+import { unSetItem } from '../ingreso-egreso/ingreso-egreso.actions';
 import { User } from '../models/user.model';
 
 
@@ -14,8 +15,12 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-
+  private _user: User;
   userSubscription: Subscription;
+
+  get user() {
+    return {...this._user};
+  }
 
   constructor( public auth: AngularFireAuth, public fireStore: AngularFirestore, private store: Store<AppState>){}
 
@@ -24,7 +29,7 @@ export class AuthService {
     .then( ({ user: { uid ,email} }) => {
 
       const newUser = new User(  uid, name, email );
-      debugger
+
       return this.fireStore.doc(`${uid}/usuario`)
         .set( { ...newUser } )
     })
@@ -49,13 +54,16 @@ export class AuthService {
         .subscribe( (fireUser: any) => {
 
           const user = User.fromFirebase( fireUser )
+          this._user = user;
           this.store.dispatch( setUser ( { user } ))
 
         })
       }
       else{
+        this._user = null;
         this.userSubscription.unsubscribe()
         this.store.dispatch( unSetUser() )
+        this.store.dispatch( unSetItem() )
 
       }
     })
