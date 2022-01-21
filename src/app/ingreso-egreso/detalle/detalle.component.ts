@@ -4,8 +4,9 @@ import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducer';
 import { IngresoEgreso } from 'src/app/models/ingreso-egresos.model';
 import { IngresoEgresoService } from 'src/app/services/ingreso-egreso.service';
-import { isLoading, stopLoading } from 'src/app/shared/ui.actions';
+import { isLoading, stopLoading } from 'src/app/shared/ui-redux/ui.actions';
 import Swal from 'sweetalert2';
+import { AppStateWithIngreso } from '../redux/ingreso-egreso.reducer';
 
 @Component({
   selector: 'app-detalle',
@@ -15,10 +16,10 @@ import Swal from 'sweetalert2';
 export class DetalleComponent implements OnInit, OnDestroy {
   ingresosEgresos: IngresoEgreso[];
   detalleSubscription: Subscription
-  constructor( private store: Store<AppState>, private _ingresoEgreso: IngresoEgresoService) { }
+  constructor( private store: Store<AppStateWithIngreso>, private _ingresoEgreso: IngresoEgresoService) { }
 
   ngOnInit() {
-   this.detalleSubscription =  this.store.select('ingresoEngreso').subscribe( ({items}) => this.ingresosEgresos = items)
+   this.detalleSubscription =  this.store.select('ingresoEgreso').subscribe( ({items}) => this.ingresosEgresos = items)
   }
 
   ngOnDestroy(): void {

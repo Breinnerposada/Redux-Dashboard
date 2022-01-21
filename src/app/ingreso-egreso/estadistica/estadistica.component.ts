@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { IngresoEgreso } from 'src/app/models/ingreso-egresos.model';
-import { isLoading, stopLoading } from 'src/app/shared/ui.actions';
 import Swal from 'sweetalert2';
-import { ChartData, ChartType } from 'chart.js';@Component({
+import { ChartData, ChartType } from 'chart.js';import { stopLoading } from 'src/app/shared/ui-redux/ui.actions';
+import { AppStateWithIngreso } from '../redux/ingreso-egreso.reducer';
+@Component({
   selector: 'app-estadistica',
   templateUrl: './estadistica.component.html',
   styles: []
@@ -22,11 +23,11 @@ export class EstadisticaComponent implements OnInit {
     datasets: []
   };
   public doughnutChartType: ChartType = 'doughnut';
-  constructor( private store: Store<AppState>) { }
+  constructor( private store: Store<AppStateWithIngreso>) { }
 
   ngOnInit() {
     Swal.showLoading()
-    this.store.select('ingresoEngreso')
+    this.store.select('ingresoEgreso')
       .subscribe( ({items}) => this.generarEstadisticas(items) )
   }
 

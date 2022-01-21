@@ -4,7 +4,7 @@ import { State, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducer';
 import { AuthService } from 'src/app/services/auth.service';
-import { isLoading, stopLoading } from '../ui.actions';
+import { isLoading, stopLoading } from '../ui-redux/ui.actions';
 
 @Component({
   selector: 'app-sidebar',

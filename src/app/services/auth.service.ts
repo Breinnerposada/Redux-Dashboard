@@ -6,8 +6,8 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AppState } from '../app.reducer';
-import { setUser, unSetUser } from '../auth/auth.actions';
-import { unSetItem } from '../ingreso-egreso/ingreso-egreso.actions';
+import { setUser, unSetUser } from '../auth/redux/auth.actions';
+import { unSetItem } from '../ingreso-egreso/redux/ingreso-egreso.actions';
 import { User } from '../models/user.model';
 
 
@@ -61,7 +61,7 @@ export class AuthService {
       }
       else{
         this._user = null;
-        this.userSubscription.unsubscribe()
+        this.userSubscription?.unsubscribe()
         this.store.dispatch( unSetUser() )
         this.store.dispatch( unSetItem() )
 

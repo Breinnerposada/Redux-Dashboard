@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { AppState } from '../app.reducer';
-import { setItem } from '../ingreso-egreso/ingreso-egreso.actions';
+import { setItem } from '../ingreso-egreso/redux/ingreso-egreso.actions';
 import { IngresoEgresoService } from '../services/ingreso-egreso.service';
 
 @Component({
@@ -28,8 +28,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.userSuscription.unsubscribe()
-      this.ingresosSuscription.unsubscribe()
+      this.userSuscription?.unsubscribe()
+      this.ingresosSuscription?.unsubscribe()
   }
 
 }

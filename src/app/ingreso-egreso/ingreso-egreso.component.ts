@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { AppState } from '../app.reducer';
 import { IngresoEgreso } from '../models/ingreso-egresos.model';
 import { IngresoEgresoService } from '../services/ingreso-egreso.service';
-import { isLoading, stopLoading } from '../shared/ui.actions';
+import { isLoading, stopLoading } from '../shared/ui-redux/ui.actions';
 
 @Component({
   selector: 'app-ingreso-egreso',

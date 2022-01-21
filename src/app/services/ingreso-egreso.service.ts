@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { IngresoEgreso } from '../models/ingreso-egresos.model';
 import { AuthService } from './auth.service';
-import { doc, setDoc } from "firebase/firestore/bundle";
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
 import { map } from 'rxjs/operators';
-import { setItem } from '../ingreso-egreso/ingreso-egreso.actions';
 
 @Injectable({
   providedIn: 'root'
