@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -6,7 +8,9 @@ import Swal from 'sweetalert2';
 })
 export class UiService {
 
-  constructor() { }
+  constructor(private store: Store<AppState>) {
+
+  }
 
 
   error(error){
