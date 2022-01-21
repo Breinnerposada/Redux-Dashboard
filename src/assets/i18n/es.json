@@ -1,0 +1,5 @@
+{
+  "global": {
+    "userNotExist": "Error: No existe registro de usuario correspondiente a este identificador. Es posible que el usuario haya sido eliminado."
+  }
+}
